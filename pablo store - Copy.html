@@ -1,0 +1,2829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>m_pablo Store</title>
+    <meta name="description" content="Shop clothes, shoes and cars at m_pablo Store.">
+    <meta name="theme-color" content="#d5ec73">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='c:\Users\USER\OneDrive\Pictures\me.png' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23d5ec73'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='800' font-size='32' text-anchor='middle' fill='%2320251f'%3Em.%3C/text%3E%3C/svg%3E">
+    <style>
+/* ============================================================
+   m_pablo Store
+   ============================================================ */
+
+:root {
+    --lime: #d5ec73;
+    --lime-soft: #eaf6b8;
+    --ink: #20251f;
+    --olive: #6e8033;
+    --olive-dark: #91a15f;
+    --muted: #555c52;
+    --sand: #eef0e7;
+    --paper: #faf9f6;
+    --line: #e3e5da;
+    --danger: #b3261e;
+    --success: #8aab5f;
+    --whatsapp: #25d366;
+    --radius: 18px;
+    --shadow: YELLOW;
+}
+
+
+/* GENERAL SETTINGS */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+button,
+a,
+input,
+select {
+    font: inherit;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+:focus-visible {
+    outline: 3px solid var(--olive);
+    outline-offset: 2px;
+}
+
+
+/* HEADER */
+
+header {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 5%;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.brand {
+    font-weight: 800;
+    font-size: 24px;
+    white-space: nowrap;
+}
+
+.mark {
+    background: var(--lime);
+    border-radius: 9px;
+    padding: 7px 10px;
+    margin-right: 9px;
+    display: inline-block;
+    transition: transform 0.25s;
+}
+
+.brand:hover .mark {
+    transform: rotate(-6deg) scale(1.05);
+}
+
+nav {
+    display: flex;
+    gap: 26px;
+    align-items: center;
+    flex: 1;
+    font-size: 15px;
+}
+
+nav a {
+    position: relative;
+    white-space: nowrap;
+    padding: 4px 0;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--olive);
+    transition: width 0.25s;
+}
+
+nav a:hover {
+    color: var(--olive-dark);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.manage-link {
+    background: var(--lime);
+    padding: 6px 14px !important;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.manage-link::after {
+    display: none;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.auth-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bag {
+    background: var(--ink);
+    color: #fff;
+    border: 0;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: transform 0.15s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+
+.bag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(32, 37, 31, 0.25);
+}
+
+.bag span {
+    background: var(--lime);
+    color: var(--ink);
+    border-radius: 12px;
+    padding: 2px 8px;
+    margin-left: 4px;
+    font-size: 13px;
+}
+
+.ghost,
+.signup-btn {
+    border-radius: 25px;
+    padding: 11px 18px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.ghost {
+    background: transparent;
+    border: 1px solid #cdd1c3;
+    color: var(--ink);
+}
+
+.ghost:hover {
+    background: var(--sand);
+}
+
+.signup-btn {
+    background: var(--lime);
+    border: 1px solid var(--lime);
+    color: var(--ink);
+}
+
+.signup-btn:hover {
+    transform: translateY(-2px);
+}
+
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--sand);
+    border-radius: 25px;
+    padding: 5px 14px 5px 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--lime);
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+}
+
+.role {
+    background: var(--lime);
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* MAIN CONTAINER */
+
+.wrap {
+    max-width: 1240px;
+    margin: auto;
+    padding: 0 5%;
+}
+
+
+/* HERO SECTION */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    min-height: 490px;
+    align-items: center;
+    gap: 35px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    left: -120px;
+    top: 10px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(213, 236, 115, 0.55), transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--olive-dark);
+}
+
+h1 {
+    font-size: clamp(46px, 6vw, 78px);
+    line-height: 1.02;
+    letter-spacing: -3px;
+    margin: 23px 0;
+}
+
+h2 {
+    font-size: 34px;
+    letter-spacing: -1px;
+    margin: 8px 0 20px;
+}
+
+p {
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.cta {
+    display: inline-block;
+    background: var(--lime);
+    color: var(--ink);
+    border: 0;
+    border-radius: 30px;
+    padding: 16px 26px;
+    font-weight: 700;
+    margin-top: 15px;
+    transition: transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 6px 18px rgba(160, 190, 40, 0.35);
+}
+
+.cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(160, 190, 40, 0.45);
+}
+
+.cta.full {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.hero-art {
+    background: var(--sand);
+    border-radius: 120px 120px 15px 15px;
+    height: 430px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.hero-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tag {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: #fff;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* CATEGORY STRIP */
+
+.strip {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px 20px;
+    padding: 19px 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+
+/* PRODUCT SECTION */
+
+.section {
+    padding: 65px 0 10px;
+    scroll-margin-top: 110px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 9px;
+    margin: 20px 0 28px;
+    flex-wrap: wrap;
+}
+
+.filters button {
+    border: 1px solid #d7d9d0;
+    background: transparent;
+    border-radius: 25px;
+    padding: 10px 21px;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+.filters button:hover {
+    background: var(--sand);
+}
+
+.filters button.active {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+}
+
+
+/* PRODUCT GRID */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 24px;
+}
+
+.grid article {
+    transition: transform 0.25s;
+}
+
+.grid article:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    height: 290px;
+    background: #ecece6;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+
+.product-image:hover img {
+    transform: scale(1.06);
+}
+
+.badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 0;
+}
+
+.details h3 {
+    margin: 0 0 4px;
+    font-size: 17px;
+}
+
+.details p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.details .price {
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.details .meta {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.add {
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    background: var(--ink);
+    color: var(--lime);
+    font-size: 24px;
+    line-height: 1;
+    transition: transform 0.15s, background 0.2s;
+}
+
+.add:hover {
+    transform: rotate(90deg) scale(1.08);
+    background: var(--olive-dark);
+}
+
+.empty {
+    grid-column: 1 / -1;
+    background: var(--sand);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+}
+
+
+/* LOWER SECTIONS */
+
+.lower {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin: 65px 0;
+}
+
+.panel {
+    background: var(--sand);
+    border-radius: var(--radius);
+    padding: 32px;
+    scroll-margin-top: 110px;
+}
+
+.manage {
+    margin-bottom: 50px;
+    border: 2px dashed #c3cba8;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 18px;
+}
+
+
+/* INPUTS AND LABELS */
+
+input,
+select {
+    padding: 13px 14px;
+    border: 1px solid #cbd0c1;
+    border-radius: 10px;
+    width: 100%;
+    margin: 8px 0 16px;
+    background: #fff;
+    color: var(--ink);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--olive);
+    box-shadow: 0 0 0 4px rgba(110, 128, 51, 0.18);
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.panel input#price,
+.panel input#quantity {
+    margin-bottom: 12px;
+}
+
+.small {
+    font-size: 12px;
+}
+
+.form-message,
+#productMessage {
+    min-height: 22px;
+    font-size: 14px;
+    color: var(--danger);
+    margin: 10px 0 0;
+}
+
+.form-message.ok,
+#productMessage.ok {
+    color: var(--success);
+}
+
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid #ddd;
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+
+/* DIALOGS (bag and log in) */
+
+dialog {
+    border: 0;
+    border-radius: 22px;
+    padding: 0;
+    max-width: 500px;
+    width: 92%;
+    max-height: 90vh;
+    overflow: auto;
+    color: var(--ink);
+    box-shadow: 0 20px 90px rgba(0, 0, 0, 0.3);
+}
+
+dialog[open] {
+    animation: pop 0.25s ease;
+}
+
+dialog::backdrop {
+    background: rgba(20, 25, 18, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.dialog-body {
+    padding: 30px;
+}
+
+.close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    border: 0;
+    font-size: 24px;
+    line-height: 1;
+    z-index: 2;
+}
+
+.close:hover {
+    background: #fff;
+}
+
+
+/* SHOPPING BAG */
+
+.cart-row {
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.cart-info strong {
+    overflow-wrap: anywhere;
+}
+
+.qty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qty button,
+.cart-row .remove,
+.owner-remove {
+    border: 1px solid #d5d8cc;
+    background: #fff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 1;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.qty button:hover,
+.cart-row .remove:hover {
+    background: var(--lime-soft);
+}
+
+.cart-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.owner-remove {
+    width: auto;
+    border-radius: 20px;
+    padding: 0 14px;
+    height: 32px;
+    font-size: 13px;
+}
+
+.owner-remove:hover {
+    background: #fde7e5;
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.cta.whatsapp {
+    background: var(--whatsapp);
+    color: #0b2e16;
+    width: 100%;
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+}
+
+.cta.ghost-cta {
+    background: transparent;
+    border: 1px solid #cdd1c3;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: none;
+}
+
+
+/* LOG IN / CREATE ACCOUNT */
+
+.auth {
+    max-width: 440px;
+}
+
+.auth-top {
+    background: linear-gradient(135deg, var(--lime) 0%, #bfe05a 100%);
+    padding: 34px 30px 26px;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-top::after {
+    content: "";
+    position: absolute;
+    right: -50px;
+    bottom: -70px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.auth-top h2 {
+    margin: 14px 0 4px;
+    font-size: 28px;
+    position: relative;
+}
+
+.auth-top p {
+    margin: 0;
+    color: #34401a;
+    position: relative;
+}
+
+.auth-top .mark {
+    background: var(--ink);
+    color: var(--lime);
+    font-weight: 800;
+    font-size: 22px;
+    margin: 0;
+}
+
+.tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--sand);
+    border-radius: 25px;
+    padding: 4px;
+    margin-bottom: 22px;
+}
+
+.tabs button {
+    border: 0;
+    background: transparent;
+    border-radius: 22px;
+    padding: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: background 0.2s, color 0.2s;
+}
+
+.tabs button[aria-selected="true"] {
+    background: var(--ink);
+    color: #fff;
+}
+
+.pw {
+    position: relative;
+}
+
+.pw input {
+    padding-right: 70px;
+}
+
+.reveal {
+    position: absolute;
+    right: 8px;
+    top: 16px;
+    border: 0;
+    background: var(--sand);
+    border-radius: 15px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.switch {
+    text-align: center;
+    margin: 18px 0 0;
+    font-size: 14px;
+}
+
+.switch a {
+    color: var(--olive-dark);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.note {
+    background: var(--lime-soft);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin: 12px 0 0;
+    color: #34401a;
+}
+
+
+/* PAYMENT BOX */
+
+.pay-box {
+    background: var(--lime-soft);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 14px 0 6px;
+    font-size: 14px;
+}
+
+.pay-box:empty {
+    display: none;
+}
+
+.pay-box h4 {
+    margin: 0 0 6px;
+    font-size: 15px;
+}
+
+.pay-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    line-height: 1.5;
+}
+
+.pay-row strong {
+    font-size: 17px;
+    letter-spacing: 0.5px;
+}
+
+.copy-btn {
+    border: 1px solid #b9c98a;
+    background: #fff;
+    border-radius: 20px;
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.copy-btn:hover {
+    background: var(--lime);
+}
+
+.pay-box ol {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+input[type="file"] {
+    padding: 10px;
+    background: #fff;
+}
+
+.photo-preview {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 0 0 16px;
+    border: 1px solid #cbd0c1;
+}
+
+
+/* ORDERS */
+
+.choose {
+    margin: 14px 0 0;
+    font-weight: 700;
+}
+
+.order-summary {
+    background: var(--sand);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    font-size: 14px;
+}
+
+.order-summary .line {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 3px 0;
+}
+
+.order-summary .total {
+    border-top: 1px solid #d5d8cc;
+    margin-top: 6px;
+    padding-top: 8px;
+    font-weight: 700;
+}
+
+.order-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 14px;
+    border: 1px solid var(--line);
+}
+
+.order-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.order-head strong {
+    font-size: 16px;
+}
+
+.order-card ul {
+    margin: 8px 0;
+    padding-left: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.order-card .meta-line {
+    margin: 2px 0;
+    font-size: 14px;
+}
+
+.order-card a {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.order-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.order-actions select {
+    width: auto;
+    margin: 0;
+    padding: 8px 12px;
+}
+
+.status {
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status.new { background: var(--lime); }
+.status.paid { background: #cfe8ff; }
+.status.delivered { background: #d6f5d6; }
+.status.cancelled { background: #f6d4d1; }
+
+.badge-count {
+    background: var(--ink);
+    color: var(--lime);
+    border-radius: 10px;
+    padding: 1px 7px;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.done-box {
+    text-align: center;
+}
+
+.done-box .tick {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--lime);
+    display: grid;
+    place-items: center;
+    font-size: 32px;
+    margin: 0 auto 10px;
+}
+
+.done-box .pay-box {
+    text-align: left;
+}
+
+
+/* NOTIFICATION */
+
+#toast {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 23px;
+    border-radius: 30px;
+    display: none;
+    z-index: 100;
+    max-width: 90vw;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+/* LARGE TABLET: keep the header tidy */
+
+@media (max-width: 1100px) {
+    header {
+        gap: 18px;
+    }
+
+    nav {
+        gap: 18px;
+        font-size: 14px;
+    }
+}
+
+
+/* WRAP THE HEADER EARLIER WHEN THERE IS NOT ENOUGH ROOM */
+
+@media (max-width: 1240px) {
+
+    header {
+        gap: 14px;
+        flex-wrap: wrap;
+        padding: 14px 5%;
+    }
+
+    .header-actions {
+        margin-left: auto;
+    }
+
+    nav {
+        order: 3;
+        overflow-x: auto;
+        gap: 23px;
+        width: 100%;
+        flex-basis: 100%;
+        padding: 5px 0;
+        scrollbar-width: none;
+    }
+
+    nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .section,
+    .panel {
+        scroll-margin-top: 150px;
+    }
+}
+
+/* The owner has two extra links (Manage, Orders), so wrap sooner. */
+@media (max-width: 1560px) {
+
+    body.is-owner header {
+        gap: 14px;
+        flex-wrap: wrap;
+        padding: 14px 5%;
+    }
+
+    body.is-owner .header-actions {
+        margin-left: auto;
+    }
+
+    body.is-owner nav {
+        order: 3;
+        overflow-x: auto;
+        gap: 23px;
+        width: 100%;
+        flex-basis: 100%;
+        padding: 5px 0;
+        scrollbar-width: none;
+    }
+
+    body.is-owner nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    body.is-owner .section,
+    body.is-owner .panel {
+        scroll-margin-top: 150px;
+    }
+}
+
+
+/* TABLET RESPONSIVENESS */
+
+@media (max-width: 850px) {
+
+    header {
+        gap: 14px;
+        flex-wrap: wrap;
+        padding: 14px 5%;
+    }
+
+    .header-actions {
+        margin-left: auto;
+    }
+
+    nav {
+        order: 3;
+        overflow-x: auto;
+        gap: 23px;
+        width: 100%;
+        flex-basis: 100%;
+        padding: 5px 0;
+        scrollbar-width: none;
+    }
+
+    nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .section,
+    .panel {
+        scroll-margin-top: 170px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+        height: 340px;
+    }
+
+    h1 {
+        letter-spacing: -2px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .product-image {
+        height: 220px;
+    }
+
+    .lower {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .strip {
+        font-size: 10px;
+    }
+
+    footer {
+        gap: 20px;
+    }
+}
+
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 480px) {
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .user-name,
+    .role {
+        display: none;
+    }
+
+    .user-chip {
+        padding: 5px;
+    }
+
+    .ghost,
+    .signup-btn {
+        padding: 9px 13px;
+        font-size: 14px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        height: 320px;
+    }
+
+    .panel {
+        padding: 24px;
+    }
+
+    .dialog-body {
+        padding: 22px;
+    }
+
+    .cart-row {
+        flex-wrap: wrap;
+    }
+}
+
+
+/* RESPECT REDUCED-MOTION SETTINGS */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="#home" class="brand"><span class="mark">m.</span>m_pablo Store</a>
+    
+
+    <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#shop" onclick="filterProducts('Clothes')">Clothes</a>
+        <a href="#shop" onclick="filterProducts('Shoes')">Shoes</a>
+        <a href="#shop" onclick="filterProducts('Cars')">Cars</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#about">About us</a>
+        <a href="#info">More info</a>
+        <a href="#manage" id="manageLink" class="manage-link" hidden>Manage</a>
+        <a href="#orders" id="ordersLink" class="manage-link" hidden>Orders <span id="ordersBadge" class="badge-count" hidden></span></a>
+    </nav>
+
+    <div class="header-actions">
+        <div id="authArea" class="auth-area"></div>
+        <button class="bag" onclick="openCart()">Bag <span id="count">0</span></button>
+    </div>
+</header>
+
+<main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div>
+            <div class="eyebrow">Your style. makes you feel better.</div>
+            <h1>Great style.<br>Great vybes.</h1>
+            <p>Explore clothes, shoes, and cars, and others in one place.<br>Welcome to your next favourite find.</p>
+            <a class="cta" href="#shop">Explore the collection ↗</a>
+            <p class="small">A shopping experience by Mukama Fabrice</p>
+        </div>
+
+        <div class="hero-art">
+            <img src="c:\Users\USER\OneDrive\Pictures\me.png" alt="Fashion shopping inspiration">
+            <div class="tag">THE EVERYDAY EDIT &nbsp; ↗</div>
+        </div>
+    </section>
+
+    <div class="strip">
+        <span>CLOTHES &amp; ESSENTIALS</span>
+        <span>FIND YOUR NEXT PAIR</span>
+        <span>EXPLORE CARS</span>
+    </div>
+
+    <!-- SHOP -->
+    <section class="section" id="shop">
+        <div class="heading">
+            <div>
+                <div class="eyebrow">The collection</div>
+                <h2>Find something you love.</h2>
+            </div>
+            <span class="small">Prices in RWF</span>
+        </div>
+
+        <div class="filters" aria-label="Product categories">
+            <button class="active" data-category="All" onclick="filterProducts('All')">All finds</button>
+            <button data-category="Clothes" onclick="filterProducts('Clothes')">Clothes</button>
+            <button data-category="Shoes" onclick="filterProducts('Shoes')">Shoes</button>
+            <button data-category="Cars" onclick="filterProducts('Cars')">Cars</button>
+            <button data-category="Other" onclick="filterProducts('Other')">Other</button>
+        </div>
+
+        <div class="grid" id="products"></div>
+    </section>
+
+    <!-- CALCULATOR + ABOUT -->
+    <div class="lower">
+        <section class="panel" id="calculator">
+            <div class="eyebrow">Plan your purchase</div>
+            <h2>Quick calculator</h2>
+            <p>Work out the total before adding to your bag.</p>
+
+            <label for="price">Price per item (RWF)</label>
+            <input type="number" id="price" min="0" value="15000" oninput="calculate()">
+
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" min="1" step="1" value="1" oninput="calculate()">
+
+            <h3 id="result" aria-live="polite">Total: 15,000 RWF</h3>
+        </section>
+
+        <section class="panel" id="about">
+            <div class="eyebrow">Behind the store</div>
+            <h2>Meet m_pablo.</h2>
+            <p>Created and managed by <strong>Mukama Fabrice</strong>, m_pablo Store brings fashion and everyday finds into one simple shopping experience.</p>
+            <p>Browse the collection, explore categories, and plan your next purchase with the built-in calculator.</p>
+
+            <div id="info">
+                <h3>More info</h3>
+                <p class="small">Add items to your bag and send your order to the seller on WhatsApp. Payment and delivery are arranged in the chat. Accounts, products and your bag are saved in this browser all you can <strong>contact us:</strong> on 0727549610 OR you can text us on <strong>EMAIL:</strong>:mukamafabrice@gmail.com<br>
+                    <strong>INSTAGRAM:</strong>m_pablo2k</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- OWNER AREA: visible only to the store owner after logging in -->
+    <section class="panel manage" id="manage" hidden>
+        <div class="eyebrow">Your store workspace</div>
+        <h2>Manage products</h2>
+        <p>Add your own products below. They stay in this browser on this device. Clearing browser data removes them.</p>
+
+        <form id="productForm">
+            <div class="form-grid">
+                <div>
+                    <label for="productName">Product name</label>
+                    <input id="productName" required maxlength="80" placeholder="Example: Blue shirt">
+                </div>
+
+                <div>
+                    <label for="productPrice">Price (RWF)</label>
+                    <input id="productPrice" type="number" required min="1" step="1" placeholder="Example: 15000">
+                </div>
+
+                <div>
+                    <label for="productCategory">Category</label>
+                    <select id="productCategory">
+                        <option>Clothes</option>
+                        <option>Shoes</option>
+                        <option>Cars</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="productDetails">Details (optional)</label>
+                    <input id="productDetails" maxlength="120" placeholder="Sizes, or for cars: 2015 · 85,000 km · Automatic">
+                </div>
+            </div>
+
+            <label for="productPhoto">Photo from your phone or computer (optional)</label>
+            <input id="productPhoto" type="file" accept="image/*">
+            <img id="photoPreview" class="photo-preview" alt="Selected photo preview" hidden>
+
+            <label for="productImage">Or paste an image link (optional)</label>
+            <input id="productImage" type="url" placeholder="https://example.com/shirt.jpg">
+
+            <button type="submit" class="cta">Add product +</button>
+            <p id="productMessage" role="status"></p>
+        </form>
+
+        <h3>Your added products</h3>
+        <div id="ownerProducts"></div>
+    </section>
+    <!-- OWNER AREA: customer orders -->
+    <section class="panel manage" id="orders" hidden>
+        <div class="eyebrow">Customer orders</div>
+        <h2>Orders</h2>
+        <p>Orders placed online on this device appear here. Update each order as you confirm payment and deliver.</p>
+        <div id="ordersList"></div>
+    </section>
+</main>
+
+<footer class="wrap">
+    <span>© 2026 m_pablo Store</span>
+    <span>Designed by Mukama Fabrice</span>
+</footer>
+
+<!-- BAG -->
+<dialog id="cart" aria-labelledby="cartHeading">
+    <div class="dialog-body">
+        <button class="close" onclick="document.getElementById('cart').close()" aria-label="Close bag">×</button>
+        <h2 id="cartHeading">Your bag</h2>
+        <div id="cartItems"></div>
+        <h3 id="cartTotal"></h3>
+        <div id="payBox" class="pay-box"></div>
+        <p class="small choose">Choose how to order:</p>
+        <button class="cta full" onclick="openCheckout()">Order online ✓</button>
+        <button class="cta whatsapp" onclick="orderOnWhatsApp()">Order on WhatsApp ↗</button>
+        <button class="cta ghost-cta" onclick="clearCart()">Empty bag</button>
+        <p class="small">Order online to place your order on the store, or send it on WhatsApp to arrange payment and delivery in the chat.</p>
+    </div>
+</dialog>
+
+<!-- LOG IN / CREATE ACCOUNT -->
+<dialog id="authDialog" class="auth" aria-labelledby="authTitle">
+    <div class="auth-top">
+        <button class="close" onclick="closeAuth()" aria-label="Close">×</button>
+        <span class="mark big">m.</span>
+        <h2 id="authTitle">Welcome back</h2>
+        <p id="authSub">Log in to continue.</p>
+    </div>
+
+    <div class="dialog-body">
+        <div class="tabs" role="tablist">
+            <button type="button" role="tab" id="tabLogin" aria-selected="true" onclick="setAuthMode('login')">Log in</button>
+            <button type="button" role="tab" id="tabSignup" aria-selected="false" onclick="setAuthMode('signup')">Create account</button>
+        </div>
+
+        <form id="loginForm" autocomplete="on">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" required autocomplete="email" placeholder="you@example.com">
+
+            <label for="loginPassword">Password</label>
+            <div class="pw">
+                <input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Your password">
+                <button type="button" class="reveal" aria-pressed="false">Show</button>
+            </div>
+
+            <button type="submit" class="cta full">Log in</button>
+            <p id="loginMessage" class="form-message" role="status"></p>
+            <p class="switch">New here? <a href="#" onclick="setAuthMode('signup'); return false;">Create an account</a></p>
+        </form>
+
+        <form id="signupForm" autocomplete="on" hidden>
+            <label for="signupName">Your name</label>
+            <input id="signupName" required maxlength="40" autocomplete="name" placeholder="Example: Mukama Fabrice">
+
+            <label for="signupEmail">Email</label>
+            <input id="signupEmail" type="email" required autocomplete="email" placeholder="you@example.com">
+
+            <label for="signupPassword">Password (at least 8 characters)</label>
+            <div class="pw">
+                <input id="signupPassword" type="password" required minlength="8" autocomplete="new-password" placeholder="Choose a password">
+                <button type="button" class="reveal" aria-pressed="false">Show</button>
+            </div>
+
+            <label for="signupConfirm">Confirm password</label>
+            <input id="signupConfirm" type="password" required minlength="8" autocomplete="new-password" placeholder="Type it again">
+
+            <button type="submit" class="cta full">Create my account</button>
+            <p id="signupMessage" class="form-message" role="status"></p>
+            <p id="signupNote" class="small note"></p>
+            <p class="switch">Already have an account? <a href="#" onclick="setAuthMode('login'); return false;">Log in</a></p>
+        </form>
+    </div>
+</dialog>
+
+<!-- CHECKOUT: ORDER ONLINE -->
+<dialog id="orderDialog" aria-labelledby="orderHeading">
+    <div class="dialog-body">
+        <button class="close" onclick="closeCheckout()" aria-label="Close">×</button>
+
+        <div id="checkoutStep">
+            <h2 id="orderHeading">Place your order</h2>
+            <div id="orderSummary" class="order-summary"></div>
+
+            <form id="orderForm">
+                <label for="orderName">Full name</label>
+                <input id="orderName" required maxlength="60" autocomplete="name" placeholder="Your name">
+
+                <label for="orderPhone">Phone number</label>
+                <input id="orderPhone" type="tel" required maxlength="20" autocomplete="tel" placeholder="Example: 0788123456">
+
+                <label for="orderAddress">Delivery address or pick-up</label>
+                <input id="orderAddress" required maxlength="140" placeholder="Example: Butare, near the market">
+
+                <label for="orderPayment">How will you pay?</label>
+                <select id="orderPayment"></select>
+
+                <label for="orderNote">Note (optional)</label>
+                <input id="orderNote" maxlength="140" placeholder="Size, colour, anything else">
+
+                
+
+                <button type="submit" class="cta full">Place order</button>
+                <p id="orderMessage" class="form-message" role="status"></p>
+
+                
+            </form>
+        </div>
+
+        <div id="orderDone" hidden></div>
+    </div>
+</dialog>
+
+<div id="toast" role="status"></div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   m_pablo Store
+   ============================================================ */
+
+// ---- SETTINGS -------------------------------------------------
+// Put your WhatsApp number here: digits only, with country code.
+// Example for Rwanda: "250788123456"
+const CONFIG = {
+    StoreName: "m_pablo Store",
+    whatsapp: "250727549610",
+
+    // Optional: a web address that also receives every online order, for example
+    // a free Formspree form ("https://formspree.io/f/xxxxxxx"), which emails you.
+    ordersEndpoint: "",
+
+    // Payment details shown in the bag. Add more lines for MTN MoMo etc.
+    // Example: { name: "MTN MoMo", number: "07xxxxxxxx", holder: "Your name" }
+    payments: [
+        { name: "Airtel Money", number: "0727549610", holder: "" }
+    ]
+};
+
+const CATEGORIES = ["Clothes", "Shoes", "Cars", "Other"];
+
+const PRODUCTS_KEY = "mpablo-products";
+const BAG_KEY = "mpablo-bag-v1";
+const USERS_KEY = "mpablo-users-v1";
+const SESSION_KEY = "mpablo-session-v1";
+const ORDERS_KEY = "mpablo-orders-v1";
+
+const $ = id => document.getElementById(id);
+
+
+// ---- SAMPLE PRODUCTS -------------------------------------------
+const sampleProducts = [
+    { id: 1, name: "Everyday cotton tee", category: "Clothes", price: 15000, details: "Sizes S to XL", img: "photo-1521572163474-6864f9cf17ab" },
+    { id: 2, name: "Classic denim jacket", category: "Clothes", price: 45000, details: "Sizes M to XXL", img: "photo-1543076447-215ad9ba6923" },
+    { id: 3, name: "Everyday sneakers", category: "Shoes", price: 35000, details: "Sizes 38 to 45", img: "photo-1549298916-b41d501d3772" },
+    { id: 4, name: "Relaxed hoodie", category: "Clothes", price: 28000, details: "Sizes S to XL", img: "photo-1556821840-3a63f95609a7" },
+    { id: 5, name: "Leather essentials", category: "Shoes", price: 42000, details: "Sizes 38 to 45", img: "photo-1543163521-1bf539c55dd2" },
+    { id: 6, name: "City car", category: "Cars", price: 12000000, details: "Sample listing · 2015 · 85,000 km · Automatic", img: "photo-1494976388531-d1058494cdd8" }
+];
+
+
+// ---- SMALL HELPERS ----------------------------------------------
+
+// Display text safely.
+function safeText(value) {
+    return String(value).replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    }[character]));
+}
+
+// Format prices in Rwandan francs.
+const money = number => number.toLocaleString("en-US") + " RWF";
+
+let toastTimer;
+
+function toast(message) {
+    const element = $("toast");
+    element.textContent = message;
+    element.style.display = "block";
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+        element.style.display = "none";
+    }, 2600);
+}
+
+function setMessage(element, text, ok) {
+    element.textContent = text;
+    element.classList.toggle("ok", Boolean(ok));
+}
+
+function readJSON(key, fallback) {
+    try {
+        const value = JSON.parse(localStorage.getItem(key) || "null");
+        return value === null ? fallback : value;
+    } catch (error) {
+        return fallback;
+    }
+}
+
+
+// ---- PRODUCTS ------------------------------------------------------
+
+let customProducts = [];
+
+(function loadCustomProducts() {
+    const saved = readJSON(PRODUCTS_KEY, []);
+
+    if (Array.isArray(saved)) {
+        customProducts = saved.filter(product =>
+            product &&
+            typeof product.id === "number" &&
+            product.id > 100 &&
+            typeof product.name === "string" &&
+            Number.isFinite(product.price) &&
+            product.price > 0 &&
+            CATEGORIES.includes(product.category) &&
+            typeof product.image === "string" &&
+            (product.details === undefined || typeof product.details === "string")
+        );
+    }
+})();
+
+let products = [...sampleProducts, ...customProducts];
+let selectedCategory = "All";
+
+function placeholderImage() {
+    return "data:image/svg+xml," + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="650" height="500">' +
+        '<rect width="100%" height="100%" fill="#e8ebdf"/>' +
+        '<text x="50%" y="50%" text-anchor="middle" ' +
+        'font-family="Arial" font-size="32" fill="#536044">' +
+        'm_pablo Store</text></svg>'
+    );
+}
+
+function productImage(product) {
+    if (product.img) {
+        return "https://images.unsplash.com/" + product.img +
+            "?auto=format&fit=crop&w=650&q=80";
+    }
+
+    const image = typeof product.image === "string" ? product.image : "";
+
+    // A photo picked from the owner's device (compressed and saved in the browser).
+    if (/^data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/.test(image)) {
+        return image;
+    }
+
+    // A photo kept in an "images" folder next to this page, e.g. images/shirt.jpg
+    if (/^images\/[\w\-. ]+\.(jpe?g|png|webp|gif)$/i.test(image)) {
+        return image;
+    }
+
+    try {
+        const url = new URL(product.image);
+        if (url.protocol === "https:") {
+            return url.href;
+        }
+    } catch (error) {
+        // Use the default image if the link is invalid.
+    }
+
+    return placeholderImage();
+}
+
+function productCard(product) {
+    const details = product.details
+        ? `<p class="meta">${safeText(product.details)}</p>`
+        : "";
+
+    return `
+        <article>
+            <div class="product-image">
+                <img loading="lazy" src="${safeText(productImage(product))}" alt="${safeText(product.name)}">
+                <span class="badge">${safeText(product.category)}</span>
+            </div>
+            <div class="details">
+                <div>
+                    <h3>${safeText(product.name)}</h3>
+                    ${details}
+                    <p class="price">${money(product.price)}</p>
+                </div>
+                <button class="add" aria-label="Add ${safeText(product.name)} to bag" onclick="add(${product.id})">+</button>
+            </div>
+        </article>
+    `;
+}
+
+// Display and filter products.
+function filterProducts(category) {
+    selectedCategory = category || "All";
+
+    const list = products.filter(product =>
+        selectedCategory === "All" || product.category === selectedCategory
+    );
+
+    $("products").innerHTML = list.length
+        ? list.map(productCard).join("")
+        : '<p class="empty">Nothing here yet. Check back soon.</p>';
+
+    // If a product photo fails to load, show the store placeholder instead.
+    document.querySelectorAll("#products img").forEach(image => {
+        image.onerror = () => {
+            image.onerror = null;
+            image.src = placeholderImage();
+        };
+    });
+
+    document.querySelectorAll(".filters button").forEach(button => {
+        button.classList.toggle("active", button.dataset.category === selectedCategory);
+    });
+}
+
+
+// ---- SHOPPING BAG ------------------------------------------------------
+
+let bag = readJSON(BAG_KEY, []);
+
+function cleanBag() {
+    if (!Array.isArray(bag)) {
+        bag = [];
+    }
+
+    bag = bag.filter(item =>
+        item &&
+        products.some(product => product.id === item.id) &&
+        Number.isInteger(item.qty) &&
+        item.qty > 0
+    );
+}
+
+cleanBag();
+
+// Save the shopping bag.
+function save() {
+    try {
+        localStorage.setItem(BAG_KEY, JSON.stringify(bag));
+    } catch (error) {
+        console.log("Could not save shopping bag.");
+    }
+
+    $("count").textContent = bag.reduce((total, item) => total + item.qty, 0);
+}
+
+function bagTotal() {
+    return bag.reduce((sum, item) => {
+        const product = products.find(entry => entry.id === item.id);
+        return product ? sum + product.price * item.qty : sum;
+    }, 0);
+}
+
+// Add products to the shopping bag.
+function add(id) {
+    const item = bag.find(entry => entry.id === id);
+
+    if (item) {
+        item.qty++;
+    } else {
+        bag.push({ id: id, qty: 1 });
+    }
+
+    save();
+    toast("Added to your bag");
+}
+
+// Open the shopping bag.
+function openCart() {
+    cleanBag();
+
+    $("cartItems").innerHTML = bag.length
+        ? bag.map(item => {
+            const product = products.find(entry => entry.id === item.id);
+
+            return `
+                <div class="cart-row">
+                    <div class="cart-info">
+                        <strong>${safeText(product.name)}</strong>
+                        <span class="small">${money(product.price)} each</span>
+                    </div>
+                    <div class="qty">
+                        <button aria-label="Decrease quantity of ${safeText(product.name)}" onclick="changeQty(${item.id}, -1)">−</button>
+                        <span>${item.qty}</span>
+                        <button aria-label="Increase quantity of ${safeText(product.name)}" onclick="changeQty(${item.id}, 1)">+</button>
+                    </div>
+                    <div class="cart-price">
+                        ${money(product.price * item.qty)}
+                        <button class="remove" onclick="removeItem(${item.id})" aria-label="Remove ${safeText(product.name)}">×</button>
+                    </div>
+                </div>
+            `;
+        }).join("")
+        : "<p>Your bag is empty. Explore the collection to start.</p>";
+
+    $("cartTotal").textContent = "Total: " + money(bagTotal());
+    renderPayBox();
+
+    const cart = $("cart");
+
+    if (!cart.open) {
+        cart.showModal();
+    }
+}
+
+function changeQty(id, change) {
+    const item = bag.find(entry => entry.id === id);
+
+    if (!item) {
+        return;
+    }
+
+    item.qty += change;
+
+    if (item.qty < 1) {
+        bag = bag.filter(entry => entry.id !== id);
+    }
+
+    save();
+    openCart();
+}
+
+// Remove an item from the shopping bag.
+function removeItem(id) {
+    bag = bag.filter(item => item.id !== id);
+    save();
+    openCart();
+}
+
+// Clear the shopping bag.
+function clearCart() {
+    bag = [];
+    save();
+    openCart();
+}
+
+// Show how to pay (Airtel Money number, copy button, steps).
+function renderPayBox() {
+    const box = $("payBox");
+    const methods = (CONFIG.payments || []).filter(method => method && method.number);
+
+    if (!bag.length || !methods.length) {
+        box.innerHTML = "";
+        return;
+    }
+
+    box.innerHTML = `
+        <h4>How to pay</h4>
+        ${methods.map(method => `
+            <div class="pay-row">
+                <span>
+                    ${safeText(method.name)}${method.holder ? " · " + safeText(method.holder) : ""}<br>
+                    <strong>${safeText(method.number)}</strong>
+                </span>
+                <button type="button" class="copy-btn" data-number="${safeText(method.number)}">Copy number</button>
+            </div>
+        `).join("")}
+        <ol>
+            <li>Send <strong>${money(bagTotal())}</strong> to the number above.</li>
+            <li>Place your order online or on WhatsApp and send the payment message or screenshot.</li>
+            <li>The seller confirms and arranges delivery.</li>
+        </ol>
+    `;
+}
+
+function copyNumber(number) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(number).then(
+            () => toast("Number copied"),
+            () => toast("Could not copy. Select the number and copy it.")
+        );
+    } else {
+        toast("Select the number and copy it.");
+    }
+}
+
+// Send the order to the seller on WhatsApp.
+function orderOnWhatsApp() {
+    cleanBag();
+
+    if (!bag.length) {
+        toast("Your bag is empty");
+        return;
+    }
+
+    if (!CONFIG.whatsapp) {
+        toast("The seller has not added a WhatsApp number yet");
+        return;
+    }
+
+    const lines = bag.map((item, index) => {
+        const product = products.find(entry => entry.id === item.id);
+        return (index + 1) + ". " + product.name + " x" + item.qty +
+            " - " + money(product.price * item.qty);
+    });
+
+    const user = currentUser();
+
+    const pay = (CONFIG.payments || []).find(method => method && method.number);
+    const payLine = pay ? "\nPayment: " + pay.name + " (" + pay.number + ")" : "";
+
+    const text =
+        "Hello " + CONFIG.storeName + ", I would like to order:\n\n" +
+        lines.join("\n") +
+        "\n\nTotal: " + money(bagTotal()) + payLine +
+        (user ? "\nName: " + user.name : "");
+
+    window.open(
+        "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(text),
+        "_blank",
+        "noopener"
+    );
+}
+
+
+// ---- CALCULATOR ----------------------------------------------------------
+
+// Calculate the total price.
+function calculate() {
+    const price = Number($("price").value);
+    const quantity = Number($("quantity").value);
+
+    $("result").textContent =
+        Number.isFinite(price) && price >= 0 &&
+        Number.isInteger(quantity) && quantity > 0
+            ? "Total: " + money(price * quantity)
+            : "Enter a valid price and whole quantity.";
+}
+
+
+// ---- ORDERS --------------------------------------------------------------------
+// Online orders are saved in this browser. If CONFIG.ordersEndpoint is set, each
+// order is also sent to that address (for example a Formspree form), which can
+// email it to the seller. A shared order list for all devices needs a database.
+
+const ORDER_STATUSES = ["New", "Paid", "Delivered", "Cancelled"];
+let placingOrder = false;
+
+function loadOrders() {
+    const saved = readJSON(ORDERS_KEY, []);
+
+    return Array.isArray(saved)
+        ? saved.filter(order =>
+            order &&
+            typeof order.id === "number" &&
+            typeof order.number === "string" &&
+            typeof order.createdAt === "number" &&
+            ORDER_STATUSES.includes(order.status) &&
+            order.customer &&
+            typeof order.customer.name === "string" &&
+            Array.isArray(order.items) &&
+            Number.isFinite(order.total))
+        : [];
+}
+
+function saveOrders(orders) {
+    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+}
+
+function orderItemsText(order) {
+    return order.items.map(item =>
+        item.name + " x" + item.qty + " - " + money(item.price * item.qty)
+    ).join("\n");
+}
+
+// Open the checkout form from the bag.
+function openCheckout() {
+    cleanBag();
+
+    if (!bag.length) {
+        toast("Your bag is empty");
+        return;
+    }
+
+    const user = currentUser();
+
+    if (user && !$("orderName").value) {
+        $("orderName").value = user.name;
+    }
+
+    const methods = (CONFIG.payments || []).filter(method => method && method.number);
+    const options = methods.map(method => method.name).concat(["Pay on delivery or pick-up"]);
+
+    $("orderPayment").innerHTML = options
+        .map(option => `<option>${safeText(option)}</option>`)
+        .join("");
+
+    $("orderSummary").innerHTML = bag.map(item => {
+        const product = products.find(entry => entry.id === item.id);
+        return `<div class="line"><span>${safeText(product.name)} × ${item.qty}</span><span>${money(product.price * item.qty)}</span></div>`;
+    }).join("") +
+        `<div class="line total"><span>Total</span><span>${money(bagTotal())}</span></div>`;
+
+    $("checkoutStep").hidden = false;
+    $("orderDone").hidden = true;
+    setMessage($("orderMessage"), "");
+
+    $("cart").close();
+    $("orderDialog").showModal();
+}
+
+function closeCheckout() {
+    $("orderDialog").close();
+}
+
+// Send the order to the optional online address.
+async function sendOrderOnline(order) {
+    if (!/^https:\/\//.test(CONFIG.ordersEndpoint || "")) {
+        return false;
+    }
+
+    try {
+        const response = await fetch(CONFIG.ordersEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({
+                _subject: "New order " + order.number,
+                order_number: order.number,
+                name: order.customer.name,
+                phone: order.customer.phone,
+                address: order.customer.address,
+                payment: order.payment,
+                note: order.customer.note,
+                items: orderItemsText(order),
+                total: money(order.total)
+            })
+        });
+
+        return response.ok;
+
+    } catch (error) {
+        return false;
+    }
+}
+
+async function handleOrder(event) {
+    event.preventDefault();
+
+    if (placingOrder) {
+        return;
+    }
+
+    placingOrder = true;
+
+    try {
+        const message = $("orderMessage");
+
+        cleanBag();
+
+        if (!bag.length) {
+            return setMessage(message, "Your bag is empty.");
+        }
+
+        const name = $("orderName").value.trim();
+        const phone = $("orderPhone").value.trim();
+        const address = $("orderAddress").value.trim();
+        const payment = $("orderPayment").value;
+        const note = $("orderNote").value.trim();
+
+        if (name.length < 2) {
+            return setMessage(message, "Enter your full name.");
+        }
+
+        if (!/^\+?[0-9 ()-]{7,20}$/.test(phone)) {
+            return setMessage(message, "Enter a valid phone number.");
+        }
+
+        if (address.length < 3) {
+            return setMessage(message, "Enter a delivery address or write pick-up.");
+        }
+
+        const now = Date.now();
+
+        const order = {
+            id: now,
+            number: "MP-" + String(now).slice(-6) + Math.floor(Math.random() * 10),
+            createdAt: now,
+            status: "New",
+            customer: { name: name, phone: phone, address: address, note: note },
+            payment: payment,
+            items: bag.map(item => {
+                const product = products.find(entry => entry.id === item.id);
+                return { id: product.id, name: product.name, price: product.price, qty: item.qty };
+            }),
+            total: bagTotal()
+        };
+
+        try {
+            saveOrders([order, ...loadOrders()]);
+        } catch (error) {
+            return setMessage(message, "Could not save the order. Browser storage may be full or disabled.");
+        }
+
+        setMessage(message, "Sending your order...", true);
+
+        const sent = CONFIG.ordersEndpoint ? await sendOrderOnline(order) : null;
+
+        bag = [];
+        save();
+
+        showOrderDone(order, sent);
+        updateOrdersUI();
+
+        $("orderForm").reset();
+
+    } finally {
+        placingOrder = false;
+    }
+}
+
+// Confirmation screen shown after an order is placed.
+function showOrderDone(order, sent) {
+    const method = (CONFIG.payments || []).find(entry =>
+        entry && entry.number && entry.name === order.payment
+    );
+
+    const payHtml = method
+        ? `<div class="pay-box">
+                <h4>Now send your payment</h4>
+                <div class="pay-row">
+                    <span>${safeText(method.name)}<br><strong>${safeText(method.number)}</strong></span>
+                    <button type="button" class="copy-btn" data-number="${safeText(method.number)}">Copy number</button>
+                </div>
+                <p class="small">Send <strong>${money(order.total)}</strong> and mention order ${safeText(order.number)}.</p>
+           </div>`
+        : "<p>You chose to pay on delivery or pick-up.</p>";
+
+    let note;
+
+    if (CONFIG.ordersEndpoint) {
+        note = sent
+            ? "The seller has received your order."
+            : "We could not reach the seller online. Please send your order on WhatsApp too.";
+    } else {
+        note = "Your order is saved. To make sure the seller sees it, send the details on WhatsApp.";
+    }
+
+    $("orderDone").innerHTML = `
+        <div class="done-box">
+            <div class="tick">✓</div>
+            <h2>Order placed!</h2>
+            <p>Your order number is <strong>${safeText(order.number)}</strong>.<br>${safeText(note)}</p>
+            ${payHtml}
+            <button class="cta whatsapp" onclick="sendOrderOnWhatsApp(${order.id})">Send details on WhatsApp ↗</button>
+            <button class="cta ghost-cta" onclick="closeCheckout()">Close</button>
+        </div>
+    `;
+
+    $("checkoutStep").hidden = true;
+    $("orderDone").hidden = false;
+}
+
+// Send an already placed order to the seller on WhatsApp.
+function sendOrderOnWhatsApp(id) {
+    const order = loadOrders().find(entry => entry.id === id);
+
+    if (!order) {
+        return;
+    }
+
+    if (!CONFIG.whatsapp) {
+        toast("The seller has not added a WhatsApp number yet");
+        return;
+    }
+
+    const text =
+        "Hello " + CONFIG.storeName + ", I placed order " + order.number + ":\n\n" +
+        orderItemsText(order) +
+        "\n\nTotal: " + money(order.total) +
+        "\nPayment: " + order.payment +
+        "\nName: " + order.customer.name + mukamafabrice
+        "\nPhone: " + order.customer.phone +
+        "\nAddress: " + order.customer.address;kigali/RWanda
+
+    window.open(
+        "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(text),
+        "_blank",
+        "noopener"
+    );
+}
+
+// Owner: show the list of orders.
+function orderCard(order) {
+    const date = new Date(order.createdAt).toLocaleString("en-GB", {
+        dateStyle: "medium",
+        timeStyle: "short"
+    });
+
+    const items = order.items.map(item => {
+        const qty = Number(item.qty) || 0;
+        const price = Number(item.price) || 0;
+        return `<li>${safeText(item.name)} × ${qty} · ${money(price * qty)}</li>`;
+    }).join("");
+
+    const phone = String(order.customer.phone || "");
+    const dial = phone.replace(/[^0-9+]/g, "");
+
+    const options = ORDER_STATUSES.map(status =>
+        `<option${status === order.status ? " selected" : ""}>${status}</option>`
+    ).join("");
+
+    return `
+        <div class="order-card">
+            <div class="order-head">
+                <strong>${safeText(order.number)}</strong>
+                <span class="status ${order.status.toLowerCase()}">${safeText(order.status)}</span>
+            </div>
+            <p class="meta-line small">${safeText(date)}</p>
+            <ul>${items}</ul>
+            <p class="meta-line"><strong>Total: ${money(Number(order.total))}</strong> · ${safeText(order.payment || "")}</p>
+            <p class="meta-line">${safeText(order.customer.name)} · <a href="tel:${safeText(dial)}">${safeText(phone)}</a></p>
+            <p class="meta-line">${safeText(order.customer.address || "")}</p>
+            ${order.customer.note ? `<p class="meta-line">Note: ${safeText(order.customer.note)}</p>` : ""}
+            <div class="order-actions">
+                <label for="status-${order.id}" class="small">Status</label>
+                <select id="status-${order.id}" onchange="setOrderStatus(${order.id}, this.value)">${options}</select>
+                <button type="button" class="owner-remove" onclick="deleteOrder(${order.id})">Remove</button>
+            </div>
+        </div>
+    `;
+}
+
+function updateOrdersUI() {
+    const owner = isOwner();
+
+    $("orders").hidden = !owner;
+    $("ordersLink").hidden = !owner;
+
+    if (!owner) {
+        return;
+    }
+
+    const orders = loadOrders();
+    const fresh = orders.filter(order => order.status === "New").length;
+
+    $("ordersBadge").textContent = fresh ? String(fresh) : "";
+    $("ordersBadge").hidden = !fresh;
+
+    $("ordersList").innerHTML = orders.length
+        ? orders.map(orderCard).join("")
+        : "<p>No orders yet. Orders placed on this device appear here.</p>";
+}
+
+function setOrderStatus(id, status) {
+    if (!isOwner() || !ORDER_STATUSES.includes(status)) {
+        return;
+    }
+
+    try {
+        saveOrders(loadOrders().map(order =>
+            order.id === id ? Object.assign({}, order, { status: status }) : order
+        ));
+    } catch (error) {
+        toast("Could not save the change");
+    }
+
+    updateOrdersUI();
+}
+
+function deleteOrder(id) {
+    if (!isOwner() || !confirm("Remove this order from the list?")) {
+        return;
+    }
+
+    try {
+        saveOrders(loadOrders().filter(order => order.id !== id));
+    } catch (error) {
+        toast("Could not save the change");
+    }
+
+    updateOrdersUI();
+}
+
+
+// ---- ACCOUNTS: LOG IN AND CREATE ACCOUNT ---------------------------------------
+// Passwords are never stored. Only a salted PBKDF2 hash is saved.
+// The first account created on this browser becomes the store owner.
+// IMPORTANT: this protects the owner area on this device only. For a real
+// public store, accounts need to live on a server.
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const encoder = new TextEncoder();
+
+const toBase64 = buffer => btoa(String.fromCharCode(...new Uint8Array(buffer)));
+const fromBase64 = text => Uint8Array.from(atob(text), character => character.charCodeAt(0));
+
+function newSalt() {
+    return toBase64(crypto.getRandomValues(new Uint8Array(16)));
+}
+
+async function hashPassword(password, saltBase64) {
+    if (!window.crypto || !crypto.subtle) {
+        throw new Error("Secure crypto is not available");
+    }
+
+    const key = await crypto.subtle.importKey(
+        "raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]
+    );
+
+    const bits = await crypto.subtle.deriveBits(
+        { name: "PBKDF2", salt: fromBase64(saltBase64), iterations: 150000, hash: "SHA-256" },
+        key,
+        256
+    );
+
+    return toBase64(bits);
+}
+
+function sameText(a, b) {
+    if (a.length !== b.length) {
+        return false;
+    }
+
+    let difference = 0;
+
+    for (let i = 0; i < a.length; i++) {
+        difference |= a.charCodeAt(i) ^ b.charCodeAt(i);
+    }
+
+    return difference === 0;
+}
+
+function loadUsers() {
+    const saved = readJSON(USERS_KEY, []);
+
+    return Array.isArray(saved)
+        ? saved.filter(user =>
+            user &&
+            typeof user.name === "string" &&
+            typeof user.email === "string" &&
+            typeof user.salt === "string" &&
+            typeof user.hash === "string" &&
+            (user.role === "owner" || user.role === "customer"))
+        : [];
+}
+
+function saveUsers(users) {
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+
+function currentUser() {
+    const session = readJSON(SESSION_KEY, null);
+
+    if (!session || typeof session.email !== "string") {
+        return null;
+    }
+
+    return loadUsers().find(user => user.email === session.email) || null;
+}
+
+function isOwner() {
+    const user = currentUser();
+    return Boolean(user && user.role === "owner");
+}
+
+function startSession(user) {
+    try {
+        localStorage.setItem(SESSION_KEY, JSON.stringify({ email: user.email }));
+    } catch (error) {
+        // The session simply will not be remembered.
+    }
+
+    updateAuthUI();
+}
+
+function logout() {
+    localStorage.removeItem(SESSION_KEY);
+    updateAuthUI();
+    toast("You are logged out");
+
+    if (location.hash === "#manage") {
+        location.hash = "#home";
+    }
+}
+
+// Show the right buttons for logged-in and logged-out visitors.
+function updateAuthUI() {
+    const user = currentUser();
+    const owner = Boolean(user && user.role === "owner");
+    const area = $("authArea");
+
+    if (user) {
+        const firstName = user.name.split(" ")[0];
+
+        area.innerHTML = `
+            <span class="user-chip">
+                <span class="avatar">${safeText(user.name.charAt(0).toUpperCase())}</span>
+                <span class="user-name">${safeText(firstName)}</span>
+                ${owner ? '<span class="role">Owner</span>' : ""}
+            </span>
+            <button class="ghost" onclick="logout()">Log out</button>
+        `;
+    } else {
+        area.innerHTML = `
+            <button class="ghost" onclick="openAuth('login')">Log in</button>
+            <button class="signup-btn" onclick="openAuth('signup')">Sign up</button>
+        `;
+    }
+
+    $("manage").hidden = !owner;
+    $("manageLink").hidden = !owner;
+    document.body.classList.toggle("is-owner", owner);
+    updateOrdersUI();
+
+    showOwnerProducts();
+}
+
+function setAuthMode(mode) {
+    const signup = mode === "signup";
+
+    $("loginForm").hidden = signup;
+    $("signupForm").hidden = !signup;
+
+    $("tabLogin").setAttribute("aria-selected", String(!signup));
+    $("tabSignup").setAttribute("aria-selected", String(signup));
+
+    $("authTitle").textContent = signup ? "Create your account" : "Welcome back";
+    $("authSub").textContent = signup
+        ? "It only takes a minute."
+        : "Log in to continue.";
+
+    $("signupNote").textContent = loadUsers().length === 0
+        ? "You will be the first account here, so you become the store owner and can manage products."
+        : "Customer accounts can order from the store.";
+
+    setMessage($("loginMessage"), "");
+    setMessage($("signupMessage"), "");
+
+    $(signup ? "signupName" : "loginEmail").focus();
+}
+
+function openAuth(mode) {
+    const dialog = $("authDialog");
+
+    if (!dialog.open) {
+        dialog.showModal();
+    }
+
+    setAuthMode(mode || "login");
+}
+
+function closeAuth() {
+    $("authDialog").close();
+    $("loginForm").reset();
+    $("signupForm").reset();
+
+    document.querySelectorAll(".reveal").forEach(button => {
+        button.textContent = "Show";
+        button.setAttribute("aria-pressed", "false");
+        button.previousElementSibling.type = "password";
+    });
+}
+
+async function handleSignup(event) {
+    event.preventDefault();
+
+    const message = $("signupMessage");
+    const name = $("signupName").value.trim();
+    const email = $("signupEmail").value.trim().toLowerCase();
+    const password = $("signupPassword").value;
+    const confirm = $("signupConfirm").value;
+
+    if (name.length < 2) {
+        return setMessage(message, "Enter your name (at least 2 letters).");
+    }
+
+    if (!EMAIL_PATTERN.test(email)) {
+        return setMessage(message, "Enter a valid email address.");
+    }
+
+    if (password.length < 8) {
+        return setMessage(message, "Your password needs at least 8 characters.");
+    }
+
+    if (password !== confirm) {
+        return setMessage(message, "The two passwords do not match.");
+    }
+
+    const users = loadUsers();
+
+    if (users.some(user => user.email === email)) {
+        return setMessage(message, "That email already has an account. Try logging in.");
+    }
+
+    try {
+        const salt = newSalt();
+        const hash = await hashPassword(password, salt);
+
+        const user = {
+            name: name,
+            email: email,
+            salt: salt,
+            hash: hash,
+            role: users.length === 0 ? "owner" : "customer",
+            created: Date.now()
+        };
+
+        saveUsers([...users, user]);
+        startSession(user);
+        closeAuth();
+
+        toast(user.role === "owner"
+            ? "Welcome, " + user.name + "! You are the store owner."
+            : "Welcome, " + user.name + "!");
+
+        if (user.role === "owner") {
+            location.hash = "#manage";
+        }
+
+    } catch (error) {
+        setMessage(message, "Could not create the account. Open this page over https or localhost, and make sure browser storage is allowed.");
+    }
+}
+
+let failedLogins = 0;
+let lockedUntil = 0;
+
+async function handleLogin(event) {
+    event.preventDefault();
+
+    const message = $("loginMessage");
+    const email = $("loginEmail").value.trim().toLowerCase();
+    const password = $("loginPassword").value;
+
+    if (Date.now() < lockedUntil) {
+        const seconds = Math.ceil((lockedUntil - Date.now()) / 1000);
+        return setMessage(message, "Too many tries. Wait " + seconds + " seconds and try again.");
+    }
+
+    try {
+        const user = loadUsers().find(entry => entry.email === email);
+
+        // Always do the hashing work so a wrong email and a wrong password look the same.
+        const attempt = await hashPassword(password, user ? user.salt : newSalt());
+
+        if (user && sameText(attempt, user.hash)) {
+            failedLogins = 0;
+            startSession(user);
+            closeAuth();
+            toast("Welcome back, " + user.name.split(" ")[0] + "!");
+            return;
+        }
+
+        failedLogins++;
+
+        if (failedLogins >= 5) {
+            failedLogins = 0;
+            lockedUntil = Date.now() + 30000;
+            return setMessage(message, "Too many tries. Wait 30 seconds and try again.");
+        }
+
+        setMessage(message, "Incorrect email or password.");
+
+    } catch (error) {
+        setMessage(message, "Could not log in. Open this page over https or localhost, and make sure browser storage is allowed.");
+    }
+}
+
+
+// ---- OWNER AREA: MANAGE PRODUCTS --------------------------------------------------
+
+function showOwnerProducts() {
+    const list = $("ownerProducts");
+
+    list.innerHTML = customProducts.length
+        ? customProducts.map(product => `
+            <div class="cart-row">
+                <span>${safeText(product.name)} · ${safeText(product.category)} · ${money(product.price)}</span>
+                <button type="button" class="owner-remove" onclick="deleteProduct(${product.id})">Remove</button>
+            </div>
+        `).join("")
+        : "<p>No products added yet. Use the form above.</p>";
+}
+
+// Delete a product added by the owner.
+function deleteProduct(id) {
+    if (!isOwner()) {
+        return;
+    }
+
+    const updated = customProducts.filter(product => product.id !== id);
+
+    try {
+        localStorage.setItem(PRODUCTS_KEY, JSON.stringify(updated));
+    } catch (error) {
+        alert("Could not save the changes. Try again.");
+        return;
+    }
+
+    customProducts = updated;
+    products = [...sampleProducts, ...customProducts];
+
+    // Take the deleted product out of the bag so the bag never breaks.
+    cleanBag();
+    save();
+
+    filterProducts(selectedCategory);
+    showOwnerProducts();
+}
+
+// Shrink a photo from the owner's device so it fits in browser storage.
+function compressImage(file) {
+    return new Promise((resolve, reject) => {
+        if (!file.type || !file.type.startsWith("image/")) {
+            return reject(new Error("Not an image"));
+        }
+
+        const url = URL.createObjectURL(file);
+        const picture = new Image();
+
+        picture.onload = () => {
+            const longest = Math.max(picture.width, picture.height);
+            const scale = Math.min(1, 800 / longest);
+            const canvas = document.createElement("canvas");
+
+            canvas.width = Math.max(1, Math.round(picture.width * scale));
+            canvas.height = Math.max(1, Math.round(picture.height * scale));
+
+            const context = canvas.getContext("2d");
+            context.fillStyle = "#ffffff";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(picture, 0, 0, canvas.width, canvas.height);
+
+            URL.revokeObjectURL(url);
+            resolve(canvas.toDataURL("image/jpeg", 0.78));
+        };
+
+        picture.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error("Could not read the image"));
+        };
+
+        picture.src = url;
+    });
+}
+
+// Add a product when the owner submits the form.
+$("productForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const message = $("productMessage");
+
+    if (!isOwner()) {
+        return setMessage(message, "Only the store owner can add products.");
+    }
+
+    const name = $("productName").value.trim();
+    const price = Number($("productPrice").value);
+    const category = $("productCategory").value;
+    const details = $("productDetails").value.trim();
+    let image = $("productImage").value.trim();
+    const photo = $("productPhoto").files[0];
+
+    if (!name || !Number.isSafeInteger(price) || price < 1) {
+        return setMessage(message, "Enter a name and a positive whole price.");
+    }
+
+    if (!CATEGORIES.includes(category)) {
+        return setMessage(message, "Choose a category.");
+    }
+
+    if (image && !image.startsWith("https://")) {
+        return setMessage(message, "Use an image link starting with https://, or leave it empty.");
+    }
+
+    if (photo) {
+        try {
+            image = await compressImage(photo);
+        } catch (error) {
+            return setMessage(message, "That file could not be used. Pick a JPG, PNG or WebP photo.");
+        }
+    }
+
+    const product = {
+        id: Date.now(),
+        name: name,
+        price: price,
+        category: category,
+        details: details,
+        image: image
+    };
+
+    const updated = [...customProducts, product];
+
+    try {
+        localStorage.setItem(PRODUCTS_KEY, JSON.stringify(updated));
+    } catch (error) {
+        return setMessage(message, "Could not save. Browser storage may be full. Try a smaller photo or remove old products.");
+    }
+
+    customProducts = updated;
+    products = [...sampleProducts, ...customProducts];
+
+    filterProducts(selectedCategory);
+    showOwnerProducts();
+
+    this.reset();
+    $("photoPreview").hidden = true;
+
+    setMessage(message, name + " added! Find it in the collection above.", true);
+});
+
+
+// ---- WIRING -------------------------------------------------------------------------
+
+$("loginForm").addEventListener("submit", handleLogin);
+$("signupForm").addEventListener("submit", handleSignup);
+
+// Show / hide password buttons.
+document.querySelectorAll(".reveal").forEach(button => {
+    button.addEventListener("click", () => {
+        const input = button.previousElementSibling;
+        const show = input.type === "password";
+
+        input.type = show ? "text" : "password";
+        button.textContent = show ? "Hide" : "Show";
+        button.setAttribute("aria-pressed", String(show));
+    });
+});
+
+$("orderForm").addEventListener("submit", handleOrder);
+
+$("orderDone").addEventListener("click", event => {
+    const button = event.target.closest(".copy-btn");
+
+    if (button) {
+        copyNumber(button.dataset.number);
+    }
+});
+
+// Refresh the orders list if another tab of this store changes it.
+window.addEventListener("storage", event => {
+    if (event.key === ORDERS_KEY) {
+        updateOrdersUI();
+    }
+});
+
+// Copy the payment number.
+$("payBox").addEventListener("click", event => {
+    const button = event.target.closest(".copy-btn");
+
+    if (button) {
+        copyNumber(button.dataset.number);
+    }
+});
+
+// Preview the photo chosen from the device.
+$("productPhoto").addEventListener("change", () => {
+    const file = $("productPhoto").files[0];
+    const preview = $("photoPreview");
+
+    if (!file || !file.type.startsWith("image/")) {
+        preview.hidden = true;
+        return;
+    }
+
+    preview.src = URL.createObjectURL(file);
+    preview.hidden = false;
+});
+
+// Clicking the dark area outside a dialog closes it.
+document.querySelectorAll("dialog").forEach(dialog => {
+    dialog.addEventListener("click", event => {
+        if (event.target === dialog) {
+            dialog.close();
+        }
+    });
+});
+
+
+// ---- START THE STORE ------------------------------------------------------------------
+
+filterProducts("All");
+save();
+updateAuthUI();
+
+</script>
+</body>
+</html>
